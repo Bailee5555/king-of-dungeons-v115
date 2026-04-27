@@ -14,6 +14,7 @@ namespace SpriteKind {
     export const Kanone = SpriteKind.create()
     export const Decke3 = SpriteKind.create()
     export const LEBEN = SpriteKind.create()
+    export const Coin = SpriteKind.create()
 }
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile38`, function (sprite, location) {
     if (Spieler.vx == 0) {
@@ -77,9 +78,6 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile7`, function (sprite, l
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Fliegehitbox, function (sprite, otherSprite) {
     statusbar.value += -1
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.SÄ4, function (sprite, otherSprite) {
-    statusbar.value += -1
     Startlevel()
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile3`, function (sprite, location) {
@@ -109,22 +107,8 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.SÄ1, function (sprite, otherSpr
     statusbar.value += -1
     Startlevel()
 })
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Decke3, function (sprite, otherSprite) {
-    if (Wand_links == 1) {
-        Spieler.vy = 30
-    } else if (Wand_links == 0) {
-        Spieler.vy = 30
-    }
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Decke2, function (sprite, otherSprite) {
-    if (Wand_links == 1) {
-        Spieler.vy = 30
-    } else if (Wand_links == 0) {
-        Spieler.vy = 30
-    }
-})
 sprites.onOverlap(SpriteKind.Fliege, SpriteKind.Decke1, function (sprite, otherSprite) {
-    Fliege.vy = 0
+	
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.King, function (sprite, otherSprite) {
     game.gameOver(true)
@@ -181,28 +165,16 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, ot
     statusbar.value += -1
     Startlevel()
 })
-sprites.onOverlap(SpriteKind.Player, SpriteKind.SÄ6, function (sprite, otherSprite) {
-    statusbar.value += -1
-    Startlevel()
-})
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile50`, function (sprite, location) {
     Currentlevel += 1
-    Startlevel()
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.SÄ2, function (sprite, otherSprite) {
-    statusbar.value += -1
     Startlevel()
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Decke1, function (sprite, otherSprite) {
     if (Wand_links == 1) {
         Spieler.vy = 30
     } else if (Wand_links == 0) {
-    	
+        Spieler.vy = 30
     }
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.SÄ3, function (sprite, otherSprite) {
-    statusbar.value += -1
-    Startlevel()
 })
 function Startlevel () {
     if (Richtung == 0) {
@@ -211,237 +183,16 @@ function Startlevel () {
         Spieler.setVelocity(-60, 0)
     }
     if (Currentlevel == 0) {
-        tiles.setCurrentTilemap(tilemap`Level6`)
-    }
-    if (Currentlevel == 0) {
+        sprites.destroyAllSpritesOfKind(SpriteKind.SÄ1)
         tiles.setCurrentTilemap(tilemap`Level2`)
-        tiles.placeOnTile(D1, tiles.getTileLocation(2, 1))
-        tiles.placeOnTile(D2, tiles.getTileLocation(1, 1))
-        tiles.placeOnTile(D3, tiles.getTileLocation(5, 5))
-        tiles.placeOnTile(D4, tiles.getTileLocation(6, 5))
-        tiles.placeOnTile(D5, tiles.getTileLocation(9, 5))
-        tiles.placeOnTile(D6, tiles.getTileLocation(10, 5))
-        tiles.placeOnTile(D7, tiles.getTileLocation(13, 1))
-        tiles.placeOnTile(D8, tiles.getTileLocation(14, 1))
-        tiles.placeOnTile(D9, tiles.getTileLocation(17, 1))
-        tiles.placeOnTile(D10, tiles.getTileLocation(18, 1))
-        tiles.placeOnTile(D11, tiles.getTileLocation(21, 1))
-        tiles.placeOnTile(D12, tiles.getTileLocation(22, 1))
     } else if (Currentlevel == 1) {
+        sprites.destroyAllSpritesOfKind(SpriteKind.SÄ1)
         tiles.setCurrentTilemap(tilemap`Level3`)
-        Sä2 = sprites.create(img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . c c c c c c . . . . . 
-            . . . . c a a a a b b c . . . . 
-            . . . c a b b b b b b b c . . . 
-            . . c b b b b b b b b a b c . . 
-            . . c b b b b b b a a b b c . . 
-            . . c b b b b c c a b b b c . . 
-            . . c b b b a c c b b b b c . . 
-            . . c b b a a b b b b b b c . . 
-            . . c b a b b b b b b b b c . . 
-            . . . c b b b b b b b b c . . . 
-            . . . . c b b b b b b c . . . . 
-            . . . . . c c c c c c . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `, SpriteKind.SÄ2)
-        Sä3 = sprites.create(img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . c c c c c c . . . . . 
-            . . . . c a a a a b b c . . . . 
-            . . . c a b b b b b b b c . . . 
-            . . c b b b b b b b b a b c . . 
-            . . c b b b b b b a a b b c . . 
-            . . c b b b b c c a b b b c . . 
-            . . c b b b a c c b b b b c . . 
-            . . c b b a a b b b b b b c . . 
-            . . c b a b b b b b b b b c . . 
-            . . . c b b b b b b b b c . . . 
-            . . . . c b b b b b b c . . . . 
-            . . . . . c c c c c c . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `, SpriteKind.SÄ3)
-        Sä5 = sprites.create(img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . c c c c c c . . . . . 
-            . . . . c a a a a b b c . . . . 
-            . . . c a b b b b b b b c . . . 
-            . . c b b b b b b b b a b c . . 
-            . . c b b b b b b a a b b c . . 
-            . . c b b b b c c a b b b c . . 
-            . . c b b b a c c b b b b c . . 
-            . . c b b a a b b b b b b c . . 
-            . . c b a b b b b b b b b c . . 
-            . . . c b b b b b b b b c . . . 
-            . . . . c b b b b b b c . . . . 
-            . . . . . c c c c c c . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `, SpriteKind.SÄ5)
-        Sä6 = sprites.create(img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . c c c c c c . . . . . 
-            . . . . c a a a a b b c . . . . 
-            . . . c a b b b b b b b c . . . 
-            . . c b b b b b b b b a b c . . 
-            . . c b b b b b b a a b b c . . 
-            . . c b b b b c c a b b b c . . 
-            . . c b b b a c c b b b b c . . 
-            . . c b b a a b b b b b b c . . 
-            . . c b a b b b b b b b b c . . 
-            . . . c b b b b b b b b c . . . 
-            . . . . c b b b b b b c . . . . 
-            . . . . . c c c c c c . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `, SpriteKind.SÄ6)
-        D13 = sprites.create(img`
-            6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-            6 6 6 6 6 6 9 6 6 6 6 6 9 9 6 6 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `, SpriteKind.Decke2)
-        D14 = sprites.create(img`
-            6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-            6 6 6 6 6 6 9 6 6 6 6 6 9 9 6 6 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `, SpriteKind.Decke2)
-        D15 = sprites.create(img`
-            6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-            6 6 6 6 6 6 9 6 6 6 6 6 9 9 6 6 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `, SpriteKind.Decke2)
-        D16 = sprites.create(img`
-            6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-            6 6 6 6 6 6 9 6 6 6 6 6 9 9 6 6 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `, SpriteKind.Decke2)
-        D17 = sprites.create(img`
-            6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-            6 6 6 6 6 6 9 6 6 6 6 6 9 9 6 6 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `, SpriteKind.Decke2)
-        D18 = sprites.create(img`
-            6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-            6 6 6 6 6 6 9 6 6 6 6 6 9 9 6 6 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `, SpriteKind.Decke2)
-        tiles.placeOnTile(D1, tiles.getTileLocation(1, 3))
-        tiles.placeOnTile(D2, tiles.getTileLocation(1, 3))
-        tiles.placeOnTile(D3, tiles.getTileLocation(1, 7))
-        tiles.placeOnTile(D4, tiles.getTileLocation(2, 7))
-        tiles.placeOnTile(D5, tiles.getTileLocation(7, 1))
-        tiles.placeOnTile(D6, tiles.getTileLocation(8, 1))
-        tiles.placeOnTile(D7, tiles.getTileLocation(11, 1))
-        tiles.placeOnTile(D8, tiles.getTileLocation(12, 1))
-        tiles.placeOnTile(D9, tiles.getTileLocation(13, 3))
-        tiles.placeOnTile(D10, tiles.getTileLocation(14, 3))
-        tiles.placeOnTile(D11, tiles.getTileLocation(17, 1))
-        tiles.placeOnTile(D12, tiles.getTileLocation(18, 1))
-        tiles.placeOnTile(D13, tiles.getTileLocation(21, 1))
-        tiles.placeOnTile(D14, tiles.getTileLocation(22, 1))
-        tiles.placeOnTile(D15, tiles.getTileLocation(29, 1))
-        tiles.placeOnTile(D16, tiles.getTileLocation(30, 1))
-        tiles.placeOnTile(D17, tiles.getTileLocation(25, 5))
-        tiles.placeOnTile(D18, tiles.getTileLocation(26, 5))
     } else if (Currentlevel == 2) {
+        sprites.destroyAllSpritesOfKind(SpriteKind.SÄ1)
         tiles.setCurrentTilemap(tilemap`Level5`)
-        sprites.destroyAllSpritesOfKind(SpriteKind.Decke2)
         sprites.destroyAllSpritesOfKind(SpriteKind.Fliegehitbox)
         sprites.destroyAllSpritesOfKind(SpriteKind.Fliege)
-        tiles.placeOnTile(D1, tiles.getTileLocation(1, 1))
-        tiles.placeOnTile(D2, tiles.getTileLocation(2, 1))
-        tiles.placeOnTile(D3, tiles.getTileLocation(5, 1))
-        tiles.placeOnTile(D4, tiles.getTileLocation(6, 1))
-        tiles.placeOnTile(D5, tiles.getTileLocation(9, 1))
-        tiles.placeOnTile(D6, tiles.getTileLocation(10, 1))
-        tiles.placeOnTile(D7, tiles.getTileLocation(25, 1))
-        tiles.placeOnTile(D8, tiles.getTileLocation(26, 1))
-        tiles.placeOnTile(D9, tiles.getTileLocation(13, 5))
-        tiles.placeOnTile(D10, tiles.getTileLocation(14, 5))
         King = sprites.create(img`
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
@@ -479,30 +230,6 @@ function Startlevel () {
     }
     Fliege.follow(Spieler, 37)
     Fliege_Hitbox.follow(Fliege, 10000)
-    tiles.placeOnRandomTile(Sä1, assets.tile`myTile51`)
-    for (let value of tiles.getTilesByType(assets.tile`myTile51`)) {
-        tiles.setTileAt(value, assets.tile`myTile16`)
-    }
-    tiles.placeOnRandomTile(Sä2, assets.tile`myTile53`)
-    for (let value of tiles.getTilesByType(assets.tile`myTile53`)) {
-        tiles.setTileAt(value, assets.tile`myTile16`)
-    }
-    tiles.placeOnRandomTile(Sä3, assets.tile`myTile54`)
-    for (let value of tiles.getTilesByType(assets.tile`myTile54`)) {
-        tiles.setTileAt(value, assets.tile`myTile16`)
-    }
-    tiles.placeOnRandomTile(Sä4, assets.tile`myTile52`)
-    for (let value of tiles.getTilesByType(assets.tile`myTile52`)) {
-        tiles.setTileAt(value, assets.tile`myTile49`)
-    }
-    tiles.placeOnRandomTile(Sä5, assets.tile`myTile55`)
-    for (let value of tiles.getTilesByType(assets.tile`myTile55`)) {
-        tiles.setTileAt(value, assets.tile`myTile49`)
-    }
-    tiles.placeOnRandomTile(Sä6, assets.tile`myTile56`)
-    for (let value of tiles.getTilesByType(assets.tile`myTile56`)) {
-        tiles.setTileAt(value, assets.tile`myTile49`)
-    }
     tiles.placeOnRandomTile(Kanone1, assets.tile`myTile60`)
     for (let value of tiles.getTilesByType(assets.tile`myTile60`)) {
         tiles.setTileAt(value, assets.tile`myTile43`)
@@ -511,42 +238,59 @@ function Startlevel () {
     for (let value of tiles.getTilesByType(assets.tile`myTile60`)) {
         tiles.setTileAt(value, assets.tile`myTile43`)
     }
+    for (let value of tiles.getTilesByType(assets.tile`myTile51`)) {
+        Sä1 = sprites.create(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . c c c c c c . . . . . 
+            . . . . c a a a a b b c . . . . 
+            . . . c a b b b b b b b c . . . 
+            . . c b b b b b b b b a b c . . 
+            . . c b b b b b b a a b b c . . 
+            . . c b b b b c c a b b b c . . 
+            . . c b b b a c c b b b b c . . 
+            . . c b b a a b b b b b b c . . 
+            . . c b a b b b b b b b b c . . 
+            . . . c b b b b b b b b c . . . 
+            . . . . c b b b b b b c . . . . 
+            . . . . . c c c c c c . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.SÄ1)
+        tiles.placeOnTile(Sä1, value)
+        tiles.setTileAt(value, assets.tile`myTile16`)
+    }
+    for (let value of tiles.getTilesByType(assets.tile`myTile52`)) {
+        Sä1 = sprites.create(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . c c c c c c . . . . . 
+            . . . . c a a a a b b c . . . . 
+            . . . c a b b b b b b b c . . . 
+            . . c b b b b b b b b a b c . . 
+            . . c b b b b b b a a b b c . . 
+            . . c b b b b c c a b b b c . . 
+            . . c b b b a c c b b b b c . . 
+            . . c b b a a b b b b b b c . . 
+            . . c b a b b b b b b b b c . . 
+            . . . c b b b b b b b b c . . . 
+            . . . . c b b b b b b c . . . . 
+            . . . . . c c c c c c . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.SÄ1)
+        tiles.placeOnTile(Sä1, value)
+        tiles.setTileAt(value, assets.tile`myTile43`)
+    }
 }
-sprites.onOverlap(SpriteKind.Player, SpriteKind.SÄ5, function (sprite, otherSprite) {
-    statusbar.value += -1
-    Startlevel()
-})
+let Sä1: Sprite = null
 let projectile: Sprite = null
 let King: Sprite = null
-let D18: Sprite = null
-let D17: Sprite = null
-let D16: Sprite = null
-let D15: Sprite = null
-let D14: Sprite = null
-let D13: Sprite = null
-let Sä6: Sprite = null
-let Sä5: Sprite = null
-let Sä3: Sprite = null
-let Sä2: Sprite = null
 let Kanone1: Sprite = null
-let Sä4: Sprite = null
-let Sä1: Sprite = null
 let Fliege_Hitbox: Sprite = null
 let Fliege: Sprite = null
 let statusbar: StatusBarSprite = null
 let Spieler: Sprite = null
-let D12: Sprite = null
-let D11: Sprite = null
-let D10: Sprite = null
-let D9: Sprite = null
-let D8: Sprite = null
-let D7: Sprite = null
-let D6: Sprite = null
-let D5: Sprite = null
-let D4: Sprite = null
-let D3: Sprite = null
-let D2: Sprite = null
-let D1: Sprite = null
 let Wand_links = 0
 let Richtung = 0
 let Currentlevel = 0
@@ -818,222 +562,6 @@ game.showLongText("Halte dich jedoch von den Fallen und ihren Projektilen fern. 
 Currentlevel = 0
 Richtung = 0
 Wand_links = 0
-D1 = sprites.create(img`
-    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-    6 6 6 6 6 6 9 6 6 6 6 6 9 9 6 6 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Decke1)
-D2 = sprites.create(img`
-    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-    6 6 6 6 6 6 9 6 6 6 6 6 9 9 6 6 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Decke1)
-D3 = sprites.create(img`
-    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-    6 6 6 6 6 6 9 6 6 6 6 6 9 9 6 6 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Decke3)
-D4 = sprites.create(img`
-    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-    6 6 6 6 6 6 9 6 6 6 6 6 9 9 6 6 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Decke3)
-D5 = sprites.create(img`
-    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-    6 6 6 6 6 6 9 6 6 6 6 6 9 9 6 6 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Decke1)
-D6 = sprites.create(img`
-    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-    6 6 6 6 6 6 6 6 6 6 6 6 9 9 6 6 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Decke1)
-D7 = sprites.create(img`
-    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-    6 6 6 6 6 6 9 6 6 6 6 6 9 9 6 6 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Decke1)
-D8 = sprites.create(img`
-    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-    6 6 6 6 6 6 9 6 6 6 6 6 9 6 6 6 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Decke1)
-D9 = sprites.create(img`
-    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-    6 6 6 6 6 6 9 6 6 6 6 6 9 9 6 6 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Decke1)
-D10 = sprites.create(img`
-    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-    6 6 6 6 6 6 9 6 6 6 6 6 9 9 6 6 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Decke1)
-D11 = sprites.create(img`
-    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-    6 6 6 6 6 6 9 6 6 6 6 6 9 9 6 6 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Decke2)
-D12 = sprites.create(img`
-    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-    6 6 6 6 6 6 9 6 6 6 6 6 9 9 6 6 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Decke2)
 Spieler = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -1167,42 +695,6 @@ Fliege_Hitbox = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Fliegehitbox)
-Sä1 = sprites.create(img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . c c c c c c . . . . . 
-    . . . . c a a a a b b c . . . . 
-    . . . c a b b b b b b b c . . . 
-    . . c b b b b b b b b a b c . . 
-    . . c b b b b b b a a b b c . . 
-    . . c b b b b c c a b b b c . . 
-    . . c b b b a c c b b b b c . . 
-    . . c b b a a b b b b b b c . . 
-    . . c b a b b b b b b b b c . . 
-    . . . c b b b b b b b b c . . . 
-    . . . . c b b b b b b c . . . . 
-    . . . . . c c c c c c . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.SÄ1)
-Sä4 = sprites.create(img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . c c c c c c . . . . . 
-    . . . . c a a a a b b c . . . . 
-    . . . c a b b b b b b b c . . . 
-    . . c b b b b b b b b a b c . . 
-    . . c b b b b b b a a b b c . . 
-    . . c b b b b c c a b b b c . . 
-    . . c b b b a c c b b b b c . . 
-    . . c b b a a b b b b b b c . . 
-    . . c b a b b b b b b b b c . . 
-    . . . c b b b b b b b b c . . . 
-    . . . . c b b b b b b c . . . . 
-    . . . . . c c c c c c . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.SÄ4)
 Kanone1 = sprites.create(img`
     . . . . . . . . . . . . . 5 . 5 
     . . . . . . . . . . . . 5 . . . 
@@ -1221,82 +713,7 @@ Kanone1 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Kanone)
-animation.runImageAnimation(
-Kanone1,
-[img`
-    . . . . . . . . . . . . . 5 . 5 
-    . . . . . . . . . . . . 5 . . . 
-    . . . . . . . . . . . . . . 5 . 
-    . . . . . . . . . . . . . f . 5 
-    . . . . . . . . . . . . f . . . 
-    . . b c c . . . . . . c c c . . 
-    . c f b c c . . . . c b b b c . 
-    . c f f b b c c c c b b b b b c 
-    . c f f b b b b b b b b b b b c 
-    . c f f b b c c c c b b b b b c 
-    . c f b c c c . . . c b b b c . 
-    . . b c c . . . . . . c c c . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `,img`
-    . . . . . . . . . . . . . . . 5 
-    . . . . . . . . . . 5 . 5 . . . 
-    . . . . . . . . . . . . . 5 . . 
-    . . . . . . . . . . . 5 5 . . . 
-    . . . . . . . . . . . . f . 5 . 
-    . . b c c . . . . . . c c c . . 
-    . c f b c c . . . . c b b b c . 
-    . c f f b b c c c c b b b b b c 
-    . c f f b b b b b b b b b b b c 
-    . c f f b b c c c c b b b b b c 
-    . c f b c c c . . . c b b b c . 
-    . . b c c . . . . . . c c c . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `,img`
-    . . . . . . . . . . . . . 5 . . 
-    . . . . . . . . . . 5 . 5 . . . 
-    . . . . . . . . . . . . . . . 5 
-    . . . . . . . . . . . . . 5 . . 
-    . . . . . . . . . . . . 5 . . . 
-    . . b c c . . . . . . c c c . . 
-    . c f b c c . . . . c b b b c . 
-    . c f f b b c c c c b b b b b c 
-    . c f f b b b b b b b b b b b c 
-    . c f f b b c c c c b b b b b c 
-    . c f b c c c . . . c b b b c . 
-    . . b c c . . . . . . c c c . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `,img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . b c c . . . . . c c c . . 
-    . . c f b c c . . . c b b b c . 
-    . . c f f b b c c c b b b b b c 
-    . . c f f b b b b b b b b b b c 
-    . . c f f b b c c c b b b b b c 
-    . . c f b c c c . . c b b b c . 
-    . . . b c c . . . . . c c c . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `],
-500,
-true
-)
-Startlevel()
-forever(function () {
+game.onUpdate(function () {
     if (Spieler.vy < 0 && Spieler.vx > 0) {
         Spieler.setImage(img`
             . . . . . . . . . . . . . . . . 
