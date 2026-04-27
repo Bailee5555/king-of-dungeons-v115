@@ -184,15 +184,12 @@ function Startlevel () {
     }
     if (Currentlevel == 0) {
         sprites.destroyAllSpritesOfKind(SpriteKind.SÄ1)
-        sprites.destroyAllSpritesOfKind(SpriteKind.Decke1)
         tiles.setCurrentTilemap(tilemap`Level2`)
     } else if (Currentlevel == 1) {
         sprites.destroyAllSpritesOfKind(SpriteKind.SÄ1)
-        sprites.destroyAllSpritesOfKind(SpriteKind.Decke1)
         tiles.setCurrentTilemap(tilemap`Level3`)
     } else if (Currentlevel == 2) {
         sprites.destroyAllSpritesOfKind(SpriteKind.SÄ1)
-        sprites.destroyAllSpritesOfKind(SpriteKind.Decke1)
         tiles.setCurrentTilemap(tilemap`Level5`)
         sprites.destroyAllSpritesOfKind(SpriteKind.Fliegehitbox)
         sprites.destroyAllSpritesOfKind(SpriteKind.Fliege)
@@ -285,74 +282,7 @@ function Startlevel () {
         tiles.placeOnTile(Sä1, value)
         tiles.setTileAt(value, assets.tile`myTile43`)
     }
-    for (let value of tiles.getTilesByType(assets.tile`myTile62`)) {
-        D1 = sprites.create(img`
-            6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-            6 6 6 6 6 6 9 6 6 6 6 6 9 9 6 6 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `, SpriteKind.Decke1)
-        tiles.placeOnTile(D1, value)
-        tiles.setTileAt(value, assets.tile`myTile3`)
-    }
-    for (let value of tiles.getTilesByType(assets.tile`myTile63`)) {
-        D1 = sprites.create(img`
-            6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-            6 6 6 6 6 6 9 6 6 6 6 6 9 9 6 6 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `, SpriteKind.Decke1)
-        tiles.placeOnTile(D1, value)
-        tiles.setTileAt(value, assets.tile`myTile45`)
-    }
-    for (let value of tiles.getTilesByType(assets.tile`myTile64`)) {
-        D1 = sprites.create(img`
-            6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-            6 6 6 6 6 6 9 6 6 6 6 6 9 9 6 6 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `, SpriteKind.Decke1)
-        tiles.placeOnTile(D1, value)
-        tiles.setTileAt(value, assets.tile`myTile18`)
-    }
 }
-let D1: Sprite = null
 let Sä1: Sprite = null
 let projectile: Sprite = null
 let King: Sprite = null
