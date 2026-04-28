@@ -107,9 +107,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.SÄ1, function (sprite, otherSpr
     statusbar.value += -1
     Startlevel()
 })
-sprites.onOverlap(SpriteKind.Fliege, SpriteKind.Decke1, function (sprite, otherSprite) {
-	
-})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.King, function (sprite, otherSprite) {
     game.gameOver(true)
     game.setGameOverEffect(true, effects.confetti)
@@ -183,16 +180,17 @@ function Startlevel () {
         Spieler.setVelocity(-60, 0)
     }
     if (Currentlevel == 0) {
-        sprites.destroyAllSpritesOfKind(SpriteKind.SÄ1)
         tiles.setCurrentTilemap(tilemap`Level2`)
     } else if (Currentlevel == 1) {
+        sprites.destroyAllSpritesOfKind(SpriteKind.Decke1)
         sprites.destroyAllSpritesOfKind(SpriteKind.SÄ1)
         tiles.setCurrentTilemap(tilemap`Level3`)
     } else if (Currentlevel == 2) {
         sprites.destroyAllSpritesOfKind(SpriteKind.SÄ1)
-        tiles.setCurrentTilemap(tilemap`Level5`)
+        sprites.destroyAllSpritesOfKind(SpriteKind.Decke1)
         sprites.destroyAllSpritesOfKind(SpriteKind.Fliegehitbox)
         sprites.destroyAllSpritesOfKind(SpriteKind.Fliege)
+        tiles.setCurrentTilemap(tilemap`Level5`)
         King = sprites.create(img`
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
@@ -212,32 +210,17 @@ function Startlevel () {
             . . . . 8 f f f f f f f f f . . 
             `, SpriteKind.King)
         tiles.placeOnRandomTile(King, assets.tile`myTile57`)
-        for (let value of tiles.getTilesByType(assets.tile`myTile57`)) {
-            tiles.setTileAt(value, assets.tile`myTile20`)
-        }
     } else {
         game.gameOver(true)
     }
     tiles.placeOnRandomTile(Spieler, assets.tile`tile6`)
-    for (let value of tiles.getTilesByType(assets.tile`tile6`)) {
-        tiles.setTileAt(value, assets.tile`myTile20`)
-    }
     scene.cameraFollowSprite(Spieler)
     tiles.placeOnRandomTile(Fliege, assets.tile`myTile42`)
     tiles.placeOnRandomTile(Fliege_Hitbox, assets.tile`myTile42`)
-    for (let value of tiles.getTilesByType(assets.tile`myTile42`)) {
-        tiles.setTileAt(value, assets.tile`myTile49`)
-    }
     Fliege.follow(Spieler, 37)
     Fliege_Hitbox.follow(Fliege, 10000)
     tiles.placeOnRandomTile(Kanone1, assets.tile`myTile60`)
-    for (let value of tiles.getTilesByType(assets.tile`myTile60`)) {
-        tiles.setTileAt(value, assets.tile`myTile43`)
-    }
     tiles.placeOnRandomTile(projectile, assets.tile`myTile60`)
-    for (let value of tiles.getTilesByType(assets.tile`myTile60`)) {
-        tiles.setTileAt(value, assets.tile`myTile43`)
-    }
     for (let value of tiles.getTilesByType(assets.tile`myTile51`)) {
         Sä1 = sprites.create(img`
             . . . . . . . . . . . . . . . . 
@@ -282,7 +265,72 @@ function Startlevel () {
         tiles.placeOnTile(Sä1, value)
         tiles.setTileAt(value, assets.tile`myTile43`)
     }
+    for (let value of tiles.getTilesByType(assets.tile`myTile3`)) {
+        D1 = sprites.create(img`
+            6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
+            6 6 6 6 6 6 9 6 6 6 6 6 9 9 6 6 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.Decke1)
+        tiles.placeOnTile(D1, value)
+    }
+    for (let value of tiles.getTilesByType(assets.tile`myTile63`)) {
+        D1 = sprites.create(img`
+            6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
+            6 6 6 6 6 6 9 6 6 6 6 6 9 9 6 6 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.Decke1)
+        tiles.placeOnTile(D1, value)
+        tiles.setTileAt(value, assets.tile`myTile45`)
+    }
+    for (let value of tiles.getTilesByType(assets.tile`myTile18`)) {
+        D1 = sprites.create(img`
+            6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
+            6 6 6 6 6 6 9 6 6 6 6 6 9 9 6 6 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.Decke1)
+        tiles.placeOnTile(D1, value)
+    }
 }
+let D1: Sprite = null
 let Sä1: Sprite = null
 let projectile: Sprite = null
 let King: Sprite = null
