@@ -1,5 +1,6 @@
 {
     "name": "King of Dungeons V11.5",
+    "version": "0.0.1",
     "description": "",
     "dependencies": {
         "device": "*",
